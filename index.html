@@ -1708,14 +1708,14 @@
           <div class="pf-field">
             <label class="pf-label" for="prf-password-current">Password saat ini</label>
             <div class="pf-pw">
-              <input type="password" id="prf-password-current" class="pf-input" readonly>
+              <input type="password" id="prf-password-current" class="pf-input" readonly placeholder="Disembunyikan demi keamanan">
               <button type="button" class="pf-eye" onclick="togglePasswordVisibility('prf-password-current', this)" aria-label="Tampilkan password"><i class="fa-solid fa-eye"></i></button>
             </div>
           </div>
           <div class="pf-field">
             <label class="pf-label" for="prf-password-new">Password baru</label>
             <div class="pf-pw">
-              <input type="password" id="prf-password-new" class="pf-input" placeholder="Minimal 4 karakter" autocomplete="new-password">
+              <input type="password" id="prf-password-new" class="pf-input" placeholder="Minimal 8 karakter" autocomplete="new-password">
               <button type="button" class="pf-eye" onclick="togglePasswordVisibility('prf-password-new', this)" aria-label="Tampilkan password"><i class="fa-solid fa-eye"></i></button>
             </div>
           </div>
@@ -3680,7 +3680,7 @@
           document.getElementById('prf-username').textContent = res.username    || '-';
           document.getElementById('prf-access').textContent   = res.accessLevel || '-';
           document.getElementById('prf-status').textContent   = res.status      || '-';
-          document.getElementById('prf-password-current').value = res.password  || '';
+          document.getElementById('prf-password-current').value = '';   // password tidak lagi dikirim server
           pfSetStatusBadge_(res.status);
         })
         .withFailureHandler(function(err) {
@@ -3731,7 +3731,7 @@
             showAppNotif('success', res.message || 'Password berhasil diperbarui.', 'Password Diperbarui');
             document.getElementById('prf-password-new').value = '';
             document.getElementById('prf-password-confirm').value = '';
-            document.getElementById('prf-password-current').value = newPass;
+            document.getElementById('prf-password-current').value = '';
           } else {
             showAppNotif('error', (res && res.message) || 'Gagal memperbarui password.');
           }
